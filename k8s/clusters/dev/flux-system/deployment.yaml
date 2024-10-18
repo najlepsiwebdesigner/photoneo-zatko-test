@@ -1,0 +1,13 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: deployment
+  namespace: flux-system
+spec:
+  path: ./k8s/deployments
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 1m
+  wait: true
+  prune: true

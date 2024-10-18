@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-hello
+spec:
+  ingressClassName: ngrok
+  rules:
+    - host: ${apex_domain}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-hello
+                port:
+                  name: http
