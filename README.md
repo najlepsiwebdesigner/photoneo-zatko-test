@@ -68,3 +68,13 @@ What will happen:
 
 - use SOPS-encrypted file in repo to store secrets instead of reading them from some config file
 - Terragrunt and other k8s manifests structure could be used for multiple env supports
+
+## Talos try
+As stated above I tried to deploy the VMs using libvirt + Talos. The configuration in [`terraform-talos`](/terraform-talos)
+corresponds to the [guide](https://www.talos.dev/v1.8/talos-guides/install/virtualized-platforms/vagrant-libvirt/).
+
+I wasn't able to start the cluster up even manually (with Vagrant) according to guide. Machines are up and
+k8s is booting however there's no kube-apiserver container - even in starting phase. Not sure if this is any kind of bug...
+
+However, to let an evidence I tried to go this way I attach code anyway. I reached the target (to have a public service)
+the other way - fully working GitOps workflow with kind deployment.
