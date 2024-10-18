@@ -15,3 +15,17 @@ spec:
     substituteFrom:
       - kind: Secret
         name: deployments
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: trivy-operator
+  namespace: flux-system
+spec:
+  path: ./k8s/deployments/system/trivy-operator
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 1m
+  wait: true
+  prune: true
