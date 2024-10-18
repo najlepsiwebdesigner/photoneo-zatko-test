@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ngrok-ingress-controller
+spec:
+  chart:
+    spec:
+      chart: kubernetes-ingress-controller
+      sourceRef:
+        kind: HelmRepository
+        name: ngrok-ingress-controller
+      version: 0.15.0
+  interval: 1m
+  values:
+    credentials:
+      authtoken: ${ngrok_auth_token}
+      apiKey: ${ngrok_api_key}

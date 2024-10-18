@@ -1,6 +1,6 @@
 provider "github" {
   owner = var.github_org
-  token = trimspace(file(pathexpand(var.github_token_path)))
+  token = trimspace(local.secrets["github_token"])
 }
 
 provider "flux" {
@@ -15,7 +15,14 @@ provider "flux" {
     branch = "main"
     http = {
       username = "git" # this can be any string when using a personal access token
-      password = trimspace(file(pathexpand(var.github_token_path)))
+      password = trimspace(local.secrets["github_token"])
     }
   }
+}
+
+provider "kubernetes" {
+  host                   = kind_cluster.this.endpoint
+  cluster_ca_certificate = kind_cluster.this.cluster_ca_certificate
+  client_key             = kind_cluster.this.client_key
+  client_certificate     = kind_cluster.this.client_certificate
 }

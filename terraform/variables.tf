@@ -10,8 +10,8 @@ variable "github_repo" {
   nullable    = false
 }
 
-variable "github_token_path" {
-  description = "Path of GitHub token file for accessing Flux repository"
+variable "secrets_yaml_path" {
+  description = "Path of YAML containing necessary secrets; see docs for what has to be contained"
   type        = string
   nullable    = false
   sensitive   = true
@@ -43,4 +43,10 @@ variable "flux_version" {
     condition     = can(regex("^\\d+\\.\\d+\\.\\d+$", var.flux_version))
     error_message = "Flux version must be in semantic versioning format (e.g., 2.4.0)."
   }
+}
+
+variable "ngrok_domain" {
+  description = "Domain obtained from ngrok service"
+  type        = string
+  nullable    = false
 }

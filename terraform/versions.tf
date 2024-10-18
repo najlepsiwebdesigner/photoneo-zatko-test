@@ -14,5 +14,9 @@ terraform {
       source  = "tehcyx/kind"
       version = "0.6.0"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "2.33.0"
+    }
   }
 }
